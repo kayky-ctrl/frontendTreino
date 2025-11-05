@@ -32,8 +32,8 @@ Os usuários devem ser capazes de:
 - Imagem do componente (mobile): ./screenshots/mobile.png
 
 ## Links
-- URL da Solução (repositório): https://github.com/seu-usuario/seu-repo
-- URL do Site ao Vivo: https://seu-site-exemplo.netlify.app
+- URL da Solução (repositório): https://github.com/kayky-ctrl/frontendTreino
+- URL do Site ao Vivo: https://kayky-ctrl.github.io/frontendTreino
 
 (Substitua os links acima pelos links reais do seu projeto.)
 
@@ -108,7 +108,4 @@ Coisas que quero melhorar e praticar:
 (Adicione aqui quaisquer links de tutoriais ou guias que te ajudaram.)
 
 ## Autor
-- Website - Seu Nome (https://seu-site.com)
-- Frontend Mentor - @seunomedeusuario
-- Twitter (X) - @seutwitter
-- LinkedIn - Seu Nome (https://linkedin.com/in/seunome)
+- Frontend Mentor - @kayky-ctrl
