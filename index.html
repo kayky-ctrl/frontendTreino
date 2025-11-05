@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Article preview component</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --color-text: hsl(214, 17%, 51%);
+      --color-heading: hsl(217, 19%, 35%);
+      --color-background: hsl(210, 46%, 95%);
+      --color-light-gray: hsl(212, 23%, 69%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      width: 100%; 
+      background-color: var(--color-background);
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      padding: 20px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: white;
+      max-width: 375px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .card-content {
+      padding: 32px 32px 20px 32px;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      color: var(--color-heading);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .card-text {
+      color: var(--color-text);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    
+    .card-footer {
+      display: flex;
+      align-items: center;
+      position: relative;
+      min-height: 60px; 
+    }
+
+    .author-info {
+      display: flex;
+      align-items: center;
+      transition: opacity 0.2s ease;
+    }
+
+    .author-info-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 16px;
+    }
+
+    .author-info-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .author-info-name {
+      color: var(--color-heading);
+      font-weight: 700;
+    }
+
+    .author-info-date {
+      color: var(--color-light-gray);
+    }
+    
+    .share-button {
+      margin-left: auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--color-background);
+      color: var(--color-text);
+      cursor: pointer;
+      z-index: 10;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    
+    .share-tooltip {
+      display: none; 
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: -32px;
+      right: -32px;
+      bottom: 0;
+      background-color: var(--color-heading);
+      padding: 0 32px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .share-tooltip span {
+      color: var(--color-light-gray);
+      letter-spacing: 5px;
+      margin-right: 16px;
+    }
+
+    .share-tooltip a {
+      margin-right: 16px;
+    }
+    
+    .card-footer.is-active .author-info {
+      opacity: 0;
+    }
+
+    .card-footer.is-active .share-tooltip {
+      display: flex; 
+    }
+    
+    .card-footer.is-active .share-button {
+      background-color: var(--color-text);
+      color: white;
+    }
+    
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        flex-direction: row;
+        max-width: 730px;
+      }
+
+      .card-image {
+        flex-basis: 40%;
+      }
+
+      .card-image img {
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px 0 0 10px;
+      }
+
+      .card-content {
+        flex-basis: 60%;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-title {
+        font-size: 1.5rem; 
+      }
+
+      .card-text{
+        flex-grow: 1;
+        margin-bottom: 24px;
+      }
+      
+      .card-footer {
+        min-height: auto; 
+        margin-top: auto;
+      }
+
+      .card-footer.is-active .author-info {
+        opacity: 1;
+      }
+
+      .share-tooltip {
+        display: none;
+        position: absolute;
+        bottom: calc(100% + 12px); 
+        left: auto; 
+        right: -40px;
+        top: auto;
+        transform: translateX(0); 
+        margin-bottom: 0;
+        width: 210px;
+        padding: 16px;
+        border-radius: 10px;
+        justify-content: flex-start;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .share-tooltip::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 12px;
+        border-style: solid;
+        border-color: var(--color-heading) transparent transparent transparent;
+      }
+      
+      .card-footer.is-active .share-tooltip {
+        display: flex;
+      }
+      
+      .card-footer.is-active .share-button {
+        background-color: var(--color-text);
+        color: white;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <article class="card">
+    <div class="card-image">
+      <img src="images/drawers.jpg" alt="Green drawer with vases on top">
+    </div>
+
+    <div class="card-content">
+      <h2 class="card-title">Shift the overall look and feel by adding these wonderful touches to furniture in your
+        home</h2>
+      <p class="card-text">Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and
+        uninviting. I've
+        got some simple tips to help you make any room feel complete.</p>
+
+      <div class="card-footer">
+        <div class="author-info">
+          <img class="author-info-avatar" src="images/avatar-michelle.jpg" alt="Michelle Appleton">
+          <div class="author-info-text">
+            <span class="author-info-name">Michelle Appleton</span>
+            <span class="author-info-date">28 Jun 2020</span>
+          </div>
+        </div>
+
+        <button class="share-button" aria-label="Share">
+          <i class="fa-solid fa-share"></i>
+        </button>
+
+        <div class="share-tooltip">
+          <span>SHARE</span>
+          <a href="#" aria-label="Share on Facebook">
+            <img src="images/icon-facebook.svg" alt="facebook icon">
+          </a>
+          <a href="#" aria-label="Share on Twitter">
+            <img src="images/icon-twitter.svg" alt="twitter icon">
+          </a>
+          <a href="#" aria-label="Share on Pinterest">
+            <img src="images/icon-pinterest.svg" alt="Pinterest icon">
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="">Kayky</a>.
+  </div>
+
+  <script>
+    const shareButton = document.querySelector('.share-button');
+    const cardFooter = document.querySelector('.card-footer');
+
+    shareButton.addEventListener('click', () => {
+      cardFooter.classList.toggle('is-active');
+    });
+  </script>
+</body>
+
+</html>
